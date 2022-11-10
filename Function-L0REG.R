@@ -152,26 +152,6 @@ L0REG <- function(matrix,
   return(weightdf)
 }
 
-# --------------------------------------------------
-if (F) {
-  wghts <- wghts / max(wghts)
-
-  # Now sort the wghts
-  indices <- sort.list(wghts, decreasing = TRUE)
-  # Check for zero entries
-  zeros <- which(wghts == 0)
-  # Now replace by ones that are in the top and are non-zero
-  wghts[1:length(wghts)] <- 0
-  wghts[indices[1:(0.25 * length(wghts))]] <- 1
-  # wghts[indices[1:5]] <- 1
-  # Set the ones that were zero to zero anyway
-  wghts[zeros] <- 0
-
-  weightdf[colnames(matrix)[-i], colnames(matrix)[i]] <- wghts
-  rownames(weightdf) <- colnames(matrix)
-  colnames(weightdf) <- colnames(matrix)
-}
-
 # Plot function --------------------------------------------------
 L0Plot <- function(data, plotType = NULL) {
   if (is.null(plotType)) {
