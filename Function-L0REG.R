@@ -53,7 +53,7 @@ LO_fit <- function(X, Y,
   )
 }
 
-L0REG <- function(matrix,
+L0DWGRN <- function(matrix,
                   penalty = NULL,
                   regulators = NULL,
                   targets = NULL,
