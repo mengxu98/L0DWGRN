@@ -1,5 +1,5 @@
 # This repository contains source code of 'L0DWGRN' method.
-<strong>L0DWGRN</strong> is a method to infer gene regulatory network!<br/>
+<strong>L0DWGRN</strong> is a method to infer gene regulatory network (GRN)!<br/>
 And it is build for the <strong>APBC2023</strong>!<br/>
 <img src="https://github.com/mengxu98/scGRN-L0/blob/master/workflow/L0DWGRN.png" alt="L0DWGRN"/><br/>
 
