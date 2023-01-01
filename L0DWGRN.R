@@ -1,8 +1,6 @@
-
-
 #' Title
 #'
-#' @param X 
+#' @param X The rows are samples and the columns are genes of the matrix
 #' @param Y 
 #' @param penalty 
 #' @param nFolds 
@@ -22,7 +20,8 @@ LO_fit <- function(X, Y,
                    seed = 1,
                    maxSuppSize = maxSuppSize,
                    nGamma = 5,
-                   gammaMin = 0.0001, gammaMax = 10) {
+                   gammaMin = 0.0001,
+                   gammaMax = 10) {
   tryCatch(
     {
       fit <- L0Learn.cvfit(X, Y,
@@ -71,7 +70,7 @@ LO_fit <- function(X, Y,
 
 #' Title
 #'
-#' @param matrix 
+#' @param matrix The rows are samples and the columns are genes of the matrix
 #' @param penalty 
 #' @param regulators 
 #' @param targets 
