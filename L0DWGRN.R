@@ -1,5 +1,21 @@
 
 
+#' Title
+#'
+#' @param X 
+#' @param Y 
+#' @param penalty 
+#' @param nFolds 
+#' @param seed 
+#' @param maxSuppSize 
+#' @param nGamma 
+#' @param gammaMin 
+#' @param gammaMax 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 LO_fit <- function(X, Y,
                    penalty = penalty,
                    nFolds = 10,
@@ -53,6 +69,18 @@ LO_fit <- function(X, Y,
   )
 }
 
+#' Title
+#'
+#' @param matrix 
+#' @param penalty 
+#' @param regulators 
+#' @param targets 
+#' @param maxSuppSize 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 L0DWGRN <- function(matrix,
                   penalty = NULL,
                   regulators = NULL,
@@ -152,7 +180,16 @@ L0DWGRN <- function(matrix,
   return(weightdf)
 }
 
-# Plot function --------------------------------------------------
+#' Plot function --------------------------------------------------
+#' Title
+#'
+#' @param data 
+#' @param plotType 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 L0Plot <- function(data, plotType = NULL) {
   if (is.null(plotType)) {
     plotType <- boxplot
@@ -177,7 +214,6 @@ L0Plot <- function(data, plotType = NULL) {
         color = "#6699cc"
       ) +
       scale_fill_manual(values = mycol) +
-      # scale_color_manual(values = mycol) +
       scale_x_discrete(labels = methods) +
       labs(x = "Methods", y = "AUPRC") +
       theme(legend.position = "bottom") +
@@ -191,6 +227,5 @@ L0Plot <- function(data, plotType = NULL) {
         )
       )
   }
-
   p
 }
