@@ -1,4 +1,4 @@
-#' Title
+#' LO_fit
 #'
 #' @param X The rows are samples and the columns are genes of the matrix
 #' @param Y 
@@ -179,8 +179,33 @@ L0DWGRN <- function(matrix,
   return(weightdf)
 }
 
+#' compute.gene.rank
+#' 
+#' Function to compute page rank of TF+target networks
+#'
+#' @param weightdf Result of GRN reconstruction
+#' @param directedGraph If GRN is directed or not
+#'
+#' @return
+#' @export
+#'
+#' @examples
+compute.gene.rank <- function(weightdf, directedGraph=FALSE) {
+  library("igraph")
+  colnames(weightdf)<-c("regulatoryGene", "targetGene", "weight")
+  tfnet<-graph_from_data_frame(df,directed=directed_graph)
+  pagerank<-data.frame(page_rank(tfnet,directed=directed_graph)$vector)
+  colnames(pagerank)<-c("page_rank")
+  pagerank$gene<-rownames(pagerank)
+  pagerank<-pagerank[,c("gene","page_rank")]
+  pagerank<-pagerank[order(pagerank$page_rank,decreasing=TRUE),]
+  pagerank$is_regulator<-FALSE
+  pagerank$is_regulator[pagerank$gene %in% unique(df$TF)]<-TRUE
+  return(pagerank)
+}
+
 #' Plot function --------------------------------------------------
-#' Title
+#' L0Plot
 #'
 #' @param data 
 #' @param plotType 
