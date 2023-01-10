@@ -1,14 +1,14 @@
 #' LO_fit
 #'
 #' @param X The rows are samples and the columns are genes of the matrix
-#' @param Y 
-#' @param penalty 
-#' @param nFolds 
-#' @param seed 
-#' @param maxSuppSize 
-#' @param nGamma 
-#' @param gammaMin 
-#' @param gammaMax 
+#' @param Y
+#' @param penalty
+#' @param nFolds
+#' @param seed
+#' @param maxSuppSize
+#' @param nGamma
+#' @param gammaMin
+#' @param gammaMax
 #'
 #' @return
 #' @export
@@ -71,20 +71,20 @@ LO_fit <- function(X, Y,
 #' Title
 #'
 #' @param matrix The rows are samples and the columns are genes of the matrix
-#' @param penalty 
-#' @param regulators 
-#' @param targets 
-#' @param maxSuppSize 
+#' @param penalty
+#' @param regulators
+#' @param targets
+#' @param maxSuppSize
 #'
 #' @return
 #' @export
 #'
 #' @examples
 L0DWGRN <- function(matrix,
-                  penalty = NULL,
-                  regulators = NULL,
-                  targets = NULL,
-                  maxSuppSize = NULL) {
+                    penalty = NULL,
+                    regulators = NULL,
+                    targets = NULL,
+                    maxSuppSize = NULL) {
   library(L0Learn)
   matrix <- as.data.frame(t(matrix))
   weightdf <- c()
@@ -180,7 +180,7 @@ L0DWGRN <- function(matrix,
 }
 
 #' compute.gene.rank
-#' 
+#'
 #' Function to compute page rank of TF+target networks
 #'
 #' @param weightdf Result of GRN reconstruction
@@ -190,25 +190,25 @@ L0DWGRN <- function(matrix,
 #' @export
 #'
 #' @examples
-compute.gene.rank <- function(weightdf, directedGraph=FALSE) {
+compute.gene.rank <- function(weightdf, directedGraph = FALSE) {
   library("igraph")
-  colnames(weightdf)<-c("regulatoryGene", "targetGene", "weight")
-  tfnet<-graph_from_data_frame(df,directed=directed_graph)
-  pagerank<-data.frame(page_rank(tfnet,directed=directed_graph)$vector)
-  colnames(pagerank)<-c("page_rank")
-  pagerank$gene<-rownames(pagerank)
-  pagerank<-pagerank[,c("gene","page_rank")]
-  pagerank<-pagerank[order(pagerank$page_rank,decreasing=TRUE),]
-  pagerank$is_regulator<-FALSE
-  pagerank$is_regulator[pagerank$gene %in% unique(df$TF)]<-TRUE
+  colnames(weightdf) <- c("regulatoryGene", "targetGene", "weight")
+  tfnet <- graph_from_data_frame(weightdf, directed = directed_graph)
+  pagerank <- data.frame(page_rank(tfnet, directed = directed_graph)$vector)
+  colnames(pagerank) <- c("page_rank")
+  pagerank$gene <- rownames(pagerank)
+  pagerank <- pagerank[, c("gene", "page_rank")]
+  pagerank <- pagerank[order(pagerank$page_rank, decreasing = TRUE), ]
+  pagerank$is_regulator <- FALSE
+  pagerank$is_regulator[pagerank$gene %in% unique(weightdf$regulatoryGene)] <- TRUE
   return(pagerank)
 }
 
 #' Plot function --------------------------------------------------
 #' L0Plot
 #'
-#' @param data 
-#' @param plotType 
+#' @param data
+#' @param plotType
 #'
 #' @return
 #' @export
