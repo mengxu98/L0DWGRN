@@ -193,15 +193,15 @@ L0DWGRN <- function(matrix,
 compute.gene.rank <- function(weightdf, directedGraph = FALSE) {
   library("igraph")
   colnames(weightdf) <- c("regulatoryGene", "targetGene", "weight")
-  tfnet <- graph_from_data_frame(weightdf, directed = directed_graph)
-  pagerank <- data.frame(page_rank(tfnet, directed = directed_graph)$vector)
-  colnames(pagerank) <- c("page_rank")
-  pagerank$gene <- rownames(pagerank)
-  pagerank <- pagerank[, c("gene", "page_rank")]
-  pagerank <- pagerank[order(pagerank$page_rank, decreasing = TRUE), ]
-  pagerank$is_regulator <- FALSE
-  pagerank$is_regulator[pagerank$gene %in% unique(weightdf$regulatoryGene)] <- TRUE
-  return(pagerank)
+  tfnet <- graph_from_data_frame(weightdf, directed = directedGraph)
+  pageRank <- data.frame(page_rank(tfnet, directed = directedGraph)$vector)
+  colnames(pageRank) <- c("pageRank")
+  pageRank$gene <- rownames(pageRank)
+  pageRank <- pageRank[, c("gene", "pageRank")]
+  pageRank <- pageRank[order(pageRank$pageRank, decreasing = TRUE), ]
+  pageRank$is_regulator <- FALSE
+  pageRank$is_regulator[pageRank$gene %in% unique(weightdf$regulatoryGene)] <- TRUE
+  return(pageRank)
 }
 
 #' Plot function --------------------------------------------------
