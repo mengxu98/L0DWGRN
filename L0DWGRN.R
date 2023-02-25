@@ -146,10 +146,12 @@ L0DWGRN <- function(matrix,
       Y <- matrix[, regulators[i]]
       temp <- LO_fit(X, Y,
         penalty = penalty,
-        nFolds = 10, seed = 1,
+        nFolds = 10,
+        seed = 1,
         maxSuppSize = maxSuppSize,
         nGamma = 5,
-        gammaMin = 0.0001, gammaMax = 10
+        gammaMin = 0.0001,
+        gammaMax = 10
       )
       temp <- as.vector(temp)
       wghts <- temp[-1]
