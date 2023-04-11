@@ -6,7 +6,7 @@
 
 And it is build for the <strong>APBC2023</strong> paper: Gene regulatory network inference based on dynamic L0 regularization<br/>
 
-<img src="https://github.com/mengxu98/scGRN-L0/blob/main/man/figures/inferCSN.png" width="90%"/>
+<img src="https://github.com/mengxu98/inferCSN/blob/main/man/figures/inferCSN.png" width="90%"/>
 
 ## Usage for L0DWGRN
 
